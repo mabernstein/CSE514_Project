@@ -1,4 +1,4 @@
-improt torch.nn as nn
+import torch.nn as nn
 
 from models.utils import unetConv2, unetUp
 
