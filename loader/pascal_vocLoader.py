@@ -187,14 +187,14 @@ class pascalVOCLoader(data.Dataset):
         function also defines the `train_aug` and `train_aug_val` data splits
         according to the description in the class docstring
         """
-        # sbd_path = self.sbd_path
+        sbd_path = self.sbd_path
         target_path = pjoin(self.root, "SegmentationClass/pre_encoded")
         if not os.path.exists(target_path):
             os.makedirs(target_path)
-        # path = pjoin(sbd_path, "imageSets/Layout/train.txt")
-        # sbd_train_list = tuple(open(path, "r"))
-        # sbd_train_list = [id_.rstrip() for id_ in sbd_train_list]
-        # train_aug = self.files["train"] + sbd_train_list
+        path = pjoin(sbd_path, "dataset/train.txt")
+        sbd_train_list = tuple(open(path, "r"))
+        sbd_train_list = [id_.rstrip() for id_ in sbd_train_list]
+        train_aug = self.files["train"] + sbd_train_list
         train_aug = self.files["train"]
 
         # keep unique elements (stable)
@@ -208,18 +208,18 @@ class pascalVOCLoader(data.Dataset):
 
         if len(pre_encoded) != expected:
             print("Pre-encoding segmentation masks...")
-        #     for ii in tqdm(sbd_train_list):
-        #         lbl_path = pjoin(sbd_path, "dataset/cls", ii + ".mat")
-        #         data = io.loadmat(lbl_path)
-        #         lbl = data["GTcls"][0]["Segmentation"][0].astype(np.int32)
-        #         lbl = m.toimage(lbl, high=lbl.max(), low=lbl.min())
-        #         m.imsave(pjoin(target_path, ii + ".png"), lbl)
+            for ii in tqdm(sbd_train_list):
+                lbl_path = pjoin(sbd_path, "dataset/cls", ii + ".mat")
+                data = io.loadmat(lbl_path)
+                lbl = data["GTcls"][0]["Segmentation"][0].astype(np.int32)
+                lbl = m.toimage(lbl, high=lbl.max(), low=lbl.min())
+                m.imsave(pjoin(target_path, ii + ".png"), lbl)
 
             for ii in tqdm(self.files["trainval"]):
                 fname = ii + ".png"
                 lbl_path = pjoin(self.root, "SegmentationClass", fname)
                 lbl = self.encode_segmap(plt.imread(lbl_path))
-                # lbl = m.toimage(lbl, high=lbl.max(), low=lbl.min())
+                lbl = m.toimage(lbl, high=lbl.max(), low=lbl.min())
                 plt.imsave(pjoin(target_path, fname), lbl)
 
-        #assert expected == 9733, "unexpected dataset sizes"
+        assert expected == 9733, "unexpected dataset sizes"
