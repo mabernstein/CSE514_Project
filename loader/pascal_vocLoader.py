@@ -222,4 +222,4 @@ class pascalVOCLoader(data.Dataset):
                 lbl = m.toimage(lbl, high=lbl.max(), low=lbl.min())
                 plt.imsave(pjoin(target_path, fname), lbl)
 
-        #assert expected == 9733, "unexpected dataset sizes"
+        # assert expected == 9733, "unexpected dataset sizes"
