@@ -212,14 +212,14 @@ class pascalVOCLoader(data.Dataset):
                 lbl_path = pjoin(sbd_path, "dataset/cls", ii + ".mat")
                 data = io.loadmat(lbl_path)
                 lbl = data["GTcls"][0]["Segmentation"][0].astype(np.int32)
-                lbl = m.toimage(lbl, high=lbl.max(), low=lbl.min())
+                lbl = plt.toimage(lbl, high=lbl.max(), low=lbl.min())
                 m.imsave(pjoin(target_path, ii + ".png"), lbl)
 
             for ii in tqdm(self.files["trainval"]):
                 fname = ii + ".png"
                 lbl_path = pjoin(self.root, "SegmentationClass", fname)
                 lbl = self.encode_segmap(plt.imread(lbl_path))
-                lbl = m.toimage(lbl, high=lbl.max(), low=lbl.min())
+                lbl = plt.toimage(lbl, high=lbl.max(), low=lbl.min())
                 m.imsave(pjoin(target_path, fname), lbl)
 
         # assert expected == 9733, "unexpected dataset sizes"
