@@ -1,6 +1,7 @@
 import torch.nn as nn
 
-from CSE514_Project.models.utils import unetConv2, unetUp
+from ptsemseg.models.utils import unetConv2, unetUp
+
 
 class unet(nn.Module):
     def __init__(
@@ -14,7 +15,6 @@ class unet(nn.Module):
 
         filters = [64, 128, 256, 512, 1024]
         filters = [int(x / self.feature_scale) for x in filters]
-
 
         # downsampling
         self.conv1 = unetConv2(self.in_channels, filters[0], self.is_batchnorm)
@@ -39,7 +39,6 @@ class unet(nn.Module):
 
         # final conv (without any concat)
         self.final = nn.Conv2d(filters[0], n_classes, 1)
-
 
     def forward(self, inputs):
         conv1 = self.conv1(inputs)
