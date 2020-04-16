@@ -1,6 +1,6 @@
 import torch.nn as nn
 
-from ptsemseg.models.utils import segnetDown2, segnetDown3, segnetUp2, segnetUp3
+from CSE514_Project.models.utils import segnetDown2, segnetDown3, segnetUp2, segnetUp3
 
 
 class segnet(nn.Module):
