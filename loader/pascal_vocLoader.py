@@ -214,7 +214,7 @@ class pascalVOCLoader(data.Dataset):
             for ii in tqdm(self.files["trainval"]):
                 fname = ii + ".png"
                 lbl_path = pjoin(self.root, "SegmentationClass", fname)
-                lbl = self.encode_segmap(m.imread(lbl_path))
+                lbl = self.encode_segmap(plt.imread(lbl_path))
                 # lbl = plt.toimage(lbl, high=lbl.max(), low=lbl.min())
                 plt.imsave(pjoin(target_path, fname), lbl,  vmin=lbl.min(), vmax=lbl.max())
 
