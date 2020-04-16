@@ -1,6 +1,6 @@
 import torch.nn as nn
 
-from ptsemseg.models.utils import unetConv2, unetUp
+from models.utils import unetConv2, unetUp
 
 
 class unet(nn.Module):
