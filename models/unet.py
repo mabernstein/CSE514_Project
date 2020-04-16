@@ -1,6 +1,6 @@
 import torch.nn as nn
 
-from models.utils import unetConv2, unetUp
+from CSE514_Project.models.utils import unetConv2, unetUp
 
 
 class unet(nn.Module):
