@@ -8,6 +8,7 @@ def cross_entropy(input, target, weight=None, size_average=True):
 
     # Handle inconsistent size between input and target
     if h != ht and w != wt:  # upsample labels
+        print("Inconsistent Input and Target Size -- Adjust")
         input = F.interpolate(input, size=(ht, wt), mode="bilinear", align_corners=True)
 
     input = input.transpose(1, 2).transpose(2, 3).contiguous().view(-1, c)
