@@ -29,7 +29,7 @@ def cross_entropy(input, target, weight=None, size_average=True):
 
 def multi_scale_cross_entropy2d(input, target, weight=None, size_average=True, scale_weight=None):
     if not isinstance(input, tuple):
-        return cross_entropy2d(input=input, target=target, weight=weight, size_average=size_average)
+        return cross_entropy(input=input, target=target, weight=weight, size_average=size_average)
 
     # Auxiliary training for PSPNet [1.0, 0.4] and ICNet [1.0, 0.4, 0.16]
     if scale_weight is None:  # scale_weight: torch tensor type
@@ -41,7 +41,7 @@ def multi_scale_cross_entropy2d(input, target, weight=None, size_average=True, s
 
     loss = 0.0
     for i, inp in enumerate(input):
-        loss = loss + scale_weight[i] * cross_entropy2d(
+        loss = loss + scale_weight[i] * cross_entropy(
             input=inp, target=target, weight=weight, size_average=size_average
         )
 

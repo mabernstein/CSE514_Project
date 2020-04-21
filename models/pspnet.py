@@ -6,8 +6,8 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 
 from ptsemseg import caffe_pb2
-from ptsemseg.models.utils import conv2DBatchNormRelu, residualBlockPSP, pyramidPooling
-from ptsemseg.loss.loss import multi_scale_cross_entropy2d
+from CSE514_Project.models.utils import conv2DBatchNormRelu, residualBlockPSP, pyramidPooling
+from CSE514_Project.loss.loss_function import multi_scale_cross_entropy2d
 
 pspnet_specs = {
     "pascal": {"n_classes": 21, "input_size": (473, 473), "block_config": [3, 4, 23, 3]},
