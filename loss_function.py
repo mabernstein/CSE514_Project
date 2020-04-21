@@ -14,7 +14,7 @@ def cross_entropy(input, target, weight=None, size_average=True):
     print(input.size())
     print(target.size())
 
-    input = input.transpose(1, 2).transpose(2, 3).contiguous().view(-1, c)
+    input = input.transpose(1, 2).transpose(2, 3).contiguous().view(-1, c+4)
     target = target.view(-1)
 
     print(input.size())
